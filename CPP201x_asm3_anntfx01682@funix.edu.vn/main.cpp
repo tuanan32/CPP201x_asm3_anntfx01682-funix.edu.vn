@@ -32,7 +32,7 @@ void ReadFromFile();//Ham doc du lieu tu file
 void WriteOnFile();	//Ham ghi du lieu len file
 
 int menu();
-
+ 
 string WhiteSpaceDelete(string&);	//Loai bo khoang trang trong chuoi
 void CheckDigit(string&);	//Kiem tra dau vao co phai so nguyen khong
 void DuplicationOfInfo(List<Setting*>);	//Kiem tra trung lap thong tin
