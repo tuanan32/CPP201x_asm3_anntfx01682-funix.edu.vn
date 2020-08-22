@@ -33,6 +33,11 @@ void WriteOnFile();	//Ham ghi du lieu len file
 
 int menu();
 
+int isDigits(int maxSelection);//Kiem tra so nhap vao dung khong, trong phan chon TimeZone va Language
+int ChonTimeZoneVaLanguage(vector<CommonInfo> list);//Liet ke ra danh sach TimeZone va Language
+const vector<string> explode(const string& s, const char& c);//Ham dua du lieu tu mot chuoi vao mang vector<>, ky tu c la dau phan cach giua cac phan tu
+
+
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 int main(int argc, char** argv) {
 	ReadFromFile();	//Doc du lieu tu file
