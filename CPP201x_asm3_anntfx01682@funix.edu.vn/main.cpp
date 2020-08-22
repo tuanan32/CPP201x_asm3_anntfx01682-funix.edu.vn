@@ -33,9 +33,15 @@ void WriteOnFile();	//Ham ghi du lieu len file
 
 int menu();
 
-int isDigits(int maxSelection);//Kiem tra so nhap vao dung khong, trong phan chon TimeZone va Language
-int ChonTimeZoneVaLanguage(vector<CommonInfo> list);//Liet ke ra danh sach TimeZone va Language
-const vector<string> explode(const string& s, const char& c);//Ham dua du lieu tu mot chuoi vao mang vector<>, ky tu c la dau phan cach giua cac phan tu
+string WhiteSpaceDelete(string&);	//Loai bo khoang trang trong chuoi
+void CheckDigit(string&);	//Kiem tra dau vao co phai so nguyen khong
+void DuplicationOfInfo(List<Setting*>);	//Kiem tra trung lap thong tin
+int ChonTimeZoneVaLanguage(vector<CommonInfo>);	//Liet ke ra danh sach TimeZone va Language
+int isDigits(int);	//Kiem tra so nhap vao dung khong, trong phan chon TimeZone va Language
+int PositionOfTheSamePersonalKey(List<Setting*>, const string&);	//Tim kiem vi tri phan tu co cung MSCN
+bool KiemTraMSCNHoacTen(List<Setting*>, int size, string, int&, string);//Kiem tra MSCN hoac ten
+const vector<string> explode(const string&, const char&);	//Ham dua du lieu tu mot chuoi vao mang vector<>, ky tu c la dau phan cach giua cac phan tu
+void GetInfo(List<Setting*>, int&, string&, string&, string&, int&, int&);	//Ham lay thong tin chung
 
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
