@@ -106,6 +106,13 @@ string* Display::layThongTinRieng(string* array)
 	return array;
 }
 
+void Display::thayDoiThongTinRieng(int number)
+{
+	set_light_level(number);
+	set_screen_light_level(number);
+	set_taplo_light_level(number);
+}
+
 void Display::nhapThongTin(){
 	Setting::nhapThongTin();
 	set_light_level(checkLevel("LIGHT LEVEL: "));

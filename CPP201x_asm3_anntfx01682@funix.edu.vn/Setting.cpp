@@ -120,6 +120,7 @@ int Setting::layServiceRemind()
 
 void Setting::thayDoiThongTinChung(Setting& u)
 {
+	setPersonalKey(u.getPersonalKey());
 	setCarName(u.getCarName());
 	setEmail(u.getEmail());
 	setOdo(u.getODO());
@@ -133,6 +134,10 @@ void Setting::xuatThongTinRieng()
 string* Setting::layThongTinRieng(string* array)
 {
 	return nullptr;
+}
+
+void Setting::thayDoiThongTinRieng(int number)
+{
 }
 
 string emailInput()

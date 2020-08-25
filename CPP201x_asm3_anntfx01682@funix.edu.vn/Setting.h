@@ -26,6 +26,7 @@ public:
 	void thayDoiThongTinChung(Setting& u);	//Thay doi thong tin cua lop Setting thong qua doi tuong u
 	virtual void xuatThongTinRieng();	//Su dung tinh chat da hinh cuar OOP, truy cap den phuong thuc lop con
 	virtual string* layThongTinRieng(string *array); //Lay thong tin rieng cua lop con ke thua
+	virtual void thayDoiThongTinRieng(int number);	//Thay doi thong tin rieng cua lop con (General, Display, Sound)
 	
 protected:	
 	string getCarName();

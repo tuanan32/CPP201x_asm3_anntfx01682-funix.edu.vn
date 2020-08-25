@@ -34,6 +34,7 @@ public:
 	void set_odo(int data);
 	void set_service_remind(int data);
 	string* layThongTinRieng(string* array); //Lay thong tin rieng cua lop con ke thua
+	void thayDoiThongTinRieng(int number);	//Thay doi thong tin rieng cua lop
 private:
 	int media_level;
 	int call_level;

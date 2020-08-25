@@ -1,0 +1,1 @@
+An,tuan@gmail.com,11111111,6,6; General:1,1;Sound:5,5,5,5;Display:1,1,1

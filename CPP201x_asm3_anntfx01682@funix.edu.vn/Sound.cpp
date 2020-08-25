@@ -130,3 +130,11 @@ string* Sound::layThongTinRieng(string* array)
 	return array;
 }
 
+void Sound::thayDoiThongTinRieng(int number)
+{
+	set_media_level(number);
+	set_call_level(number);
+	set_navi_level(number);
+	set_notification_level(number);
+}
+

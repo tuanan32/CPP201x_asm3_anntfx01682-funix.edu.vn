@@ -146,27 +146,73 @@ void NhapThongTinCaiDat(){
 }
 
 
-//Thay doi thong tin chung cua du lieu co cung ma so ca nhan voi du lieu vua nhap, trong 2 chuc nang con lai
-//set1, set2: mang luu du lieu cua 2 chuc nang con lai
-//count1, count2: so luong cac phan tu trong mang
+//Thay doi thong tin chung cua du lieu co cung ma so ca nhan voi du lieu vua nhap
+//neu du lieu chua duoc tao thi khoi tao du lieu mac dinh
 //u: du lieu vua nhap
-void ThayDoiCaiDatChung(List<Setting*> set1, int size1, List<Setting*> set2, int size2, Setting& u)
+//selection: 1. Doi tuong vua nhap thuoc lop Display;  2. Lop Sound;  3. Lop General
+void ThayDoiCaiDatChungVaKhoiTaoDuLieu(Setting u, int selection)
 {
-	for (int i = 0; i < size1; ++i)
+	Setting* p = NULL;	//Con tro tro den vung nho cua lop General hoac lop Display hoac lop Sound
+	bool found = false;	//true: Da cai dat du lieu cho chuc nang do;  false: Chua cai dat du lieu cho chuc nang do
+	int defaultNumber = 1;	//Gia tri khoi tao mac dinh cho thong tin cua cac chuc nang
+
+	if (selection != 1)
 	{
-		if (set1.get(i)->layMaSoCaNhan().compare(u.layMaSoCaNhan()) == 0)	//Bang 0 khi 2 MSCN giong nhau va tien hanh thay doi 
-		{																	//thong tin chung cua list
-			set1.get(i)->thayDoiThongTinChung(u);
-			break;
+		for (int i = 0; i < display.size(); ++i)
+		{
+			if (display.get(i)->layMaSoCaNhan().compare(u.layMaSoCaNhan()) == 0)	//Bang 0 khi 2 MSCN giong nhau va tien hanh thay doi 
+			{																	//thong tin chung cua list
+				display.get(i)->thayDoiThongTinChung(u);//Neu da cai dat du lieu roi thi thay doi thong tin chung cho phu hop
+				found = true;
+				break;
+			}
+		}
+		if (found == false)	//Chua cai dat du lieu thi tien hanh khoi tao du lieu mac dinh
+		{
+			p = new Display;
+			p->thayDoiThongTinChung(u);	//Nhap thong tin chung cho du lieu
+			p->thayDoiThongTinRieng(defaultNumber);	//Khoi tao du lieu mac dinh
+			display.add(p);
+		}
+	}
+	
+	if (selection != 2)
+	{
+		for (int i = 0; i < sound.size(); ++i)
+		{
+			if (sound.get(i)->layMaSoCaNhan().compare(u.layMaSoCaNhan()) == 0)	//Bang 0 khi 2 MSCN giong nhau va tien hanh thay doi 
+			{																	//thong tin chung cua list
+				sound.get(i)->thayDoiThongTinChung(u);//Neu da cai dat du lieu roi thi thay doi thong tin chung cho phu hop
+				found = true;
+				break;
+			}
+		}
+		if (found == false)	//Chua cai dat du lieu thi tien hanh khoi tao du lieu mac dinh
+		{
+			p = new Sound;
+			p->thayDoiThongTinChung(u);	//Nhap thong tin chung cho du lieu
+			p->thayDoiThongTinRieng(defaultNumber);	//Khoi tao du lieu mac dinh
+			sound.add(p);
 		}
 	}
 
-	for (int i = 0; i < size2; ++i)
+	if (selection != 3)
 	{
-		if (set2.get(i)->layMaSoCaNhan().compare(u.layMaSoCaNhan()) == 0)
+		for (int i = 0; i < general.size(); ++i)
 		{
-			set2.get(i)->thayDoiThongTinChung(u);
-			break;
+			if (general.get(i)->layMaSoCaNhan().compare(u.layMaSoCaNhan()) == 0)	//Bang 0 khi 2 MSCN giong nhau va tien hanh thay doi 
+			{																	//thong tin chung cua list
+				general.get(i)->thayDoiThongTinChung(u);//Neu da cai dat du lieu roi thi thay doi thong tin chung cho phu hop
+				found = true;
+				break;
+			}
+		}
+		if (found == false)	//Chua cai dat du lieu thi tien hanh khoi tao du lieu mac dinh
+		{
+			p = new General;
+			p->thayDoiThongTinChung(u);	//Nhap thong tin chung cho du lieu
+			p->thayDoiThongTinRieng(defaultNumber);	//Khoi tao du lieu mac dinh
+			general.add(p);
 		}
 	}
 }
@@ -183,7 +229,7 @@ void NhapThongTinCaiDat_Sound()
 		Setting* p;	//Con tro tro den vung nho co gia tri giong voi bien 'snd'
 
 		snd.nhapThongTin();	//Nhap thong tin cho bien snd
-		ThayDoiCaiDatChung(display, display.size(), general, general.size(), snd);	//Thay doi thong tin chung cua phan tu (trong 2 list con lai) co MSCN trung voi MSCN cua doi tuong dang nhap
+		ThayDoiCaiDatChungVaKhoiTaoDuLieu(snd, 2);	//2: Doi tuong thuoc lop Sound
 
 		//Tim MSCN trung khop voi MSCN vua nhap
 		for (int i = 0; i < sound.size(); ++i)
@@ -275,7 +321,7 @@ void NhapThongTinCaiDat_General()
 		gen.nhapThongTin();	//Nhap thong tin chung	
 		bool found = false;	//true: tai khoan ton tai,  false: tai khoan khong ton tai
 
-		ThayDoiCaiDatChung(sound, sound.size(), display, display.size(), gen);//Thay doi thong tin chung cua phan tu (trong 2 list con lai) co MSCN trung voi MSCN cua doi tuong dang nhap
+		ThayDoiCaiDatChungVaKhoiTaoDuLieu(gen, 3);//3: Doi tuong thuoc lop General
 
 		cout << "\nMOI BAN CHON TIME ZONE\n";
 		selection = ChonTimeZoneVaLanguage(timezoneList);//Lua chon timeZone
@@ -323,8 +369,7 @@ void NhapThongTinCaiDat_Display()
 		bool found = false;	//true: tai khoan ton tai,  false: tai khoan khong ton tai
 		
 		disp.nhapThongTin();//Nhap thong tin chung
-		ThayDoiCaiDatChung(sound, sound.size(), general, general.size(), disp);//Thay doi thong tin chung cua phan tu (trong 2 list con lai) co MSCN trung voi MSCN cua doi tuong dang nhap
-
+		ThayDoiCaiDatChungVaKhoiTaoDuLieu(disp, 1);//1: Doi tuong thuoc lop Display
 		//Tim MSCN trung khop voi MSCN vua nhap
 		for (int i = 0; i < display.size(); ++i)
 		{

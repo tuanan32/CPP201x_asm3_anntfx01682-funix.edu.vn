@@ -103,3 +103,9 @@ string* General::layThongTinRieng(string* array)
 	array[1] = get_language();
 	return array;
 }
+
+void General::thayDoiThongTinRieng(int number)
+{
+	set_timeZone(to_string(number));
+	set_language(to_string(number));
+}
